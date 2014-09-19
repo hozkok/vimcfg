@@ -1,0 +1,7 @@
+gundo
+nerdtree
+vim-flake8
+vim-javascript-syntax
+jedi-vim
+snipmate
+vim-javascript

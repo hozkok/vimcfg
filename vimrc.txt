@@ -1,0 +1,74 @@
+filetype off
+call pathogen#incubate()
+call pathogen#helptags()
+
+set foldmethod=indent
+set foldlevel=99
+
+" setting <leader> key to comma
+let mapleader = ","
+
+set number
+
+" Make search case insensitive
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" tab configuration
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set smarttab
+set expandtab
+
+" word wrap
+set wrap
+set linebreak
+set nolist
+set textwidth=0
+set wrapmargin=0
+
+set backspace=indent,eol,start
+
+" indentation
+set autoindent
+
+" Disable stupid backup and swap files - they trigger too many events
+" for file system watchers
+set nobackup
+set nowritebackup
+set noswapfile
+
+" easier moving of code blocks
+" Try to go into visual mode (v), thenselect several lines of code here and
+" then press ``>`` several times.
+vnoremap < <gv  " better indentation
+vnoremap > >gv  " better indentation
+
+" to easily move though windows
+noremap <c-j> <c-w>j
+noremap <c-k> <c-w>k
+noremap <c-l> <c-w>l
+noremap <c-h> <c-w>h
+
+" gundo plugin shortcut
+map <leader>G :GundoToggle<CR>
+
+" NERDTree plugin shortcut
+map <C-n> :NERDTreeToggle<CR>
+
+" jedi-vim configuration
+let g:jedi#popup_on_dot = 0
+
+if has("python3")
+    let g:jedi#force_py_version = 3
+endif
+
+syntax on " syntax highlighting
+filetype on " try to detect filetypes
+
+colorscheme torte
+
+filetype plugin indent on " enable loading indent file for filetype
