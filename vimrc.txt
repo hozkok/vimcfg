@@ -1,6 +1,36 @@
+" ---- vundle configurations ----
+set nocompatible
 filetype off
-call pathogen#incubate()
-call pathogen#helptags()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" For Windows
+" set rtp+=~/vimfiles/bundle/Vundle.vim
+" let path='~/vimfiles/bundle'
+" call vundle#begin(path)
+
+" Plugins...
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'davidhalter/jedi-vim'
+Plugin 'klen/python-mode'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Raimondi/delimitMate'
+Plugin 'nvie/vim-flake8'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Lokaltog/vim-powerline'
+" plugins for vim-snipmate
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
+Plugin 'digitaltoad/vim-jade'
+" --
+
+call vundle#end()
+" ---- /vundle configurations/ ----
+
 
 set foldmethod=indent
 set foldlevel=99
@@ -62,13 +92,58 @@ map <C-n> :NERDTreeToggle<CR>
 " jedi-vim configuration
 let g:jedi#popup_on_dot = 0
 
-if has("python3")
-    let g:jedi#force_py_version = 3
-endif
+" delimitMate configuration
+
 
 syntax on " syntax highlighting
 filetype on " try to detect filetypes
 
+" use python instead of python3 for tern support
+if(has("python"))
+    " enable tern shortcuts
+    let g:tern_map_keys=1
+    map <leader>td :TernDoc<CR>
+    map <leader>tb :TernDocBrowse<CR>
+    map <leader>tt :TernType<CR>
+    map <leader>tD :TernDef<CR>
+    map <leader>tpd :TernDefPreview<CR>
+    map <leader>tsd :TernDefSplit<CR>
+    map <leader>ttd :TernDefTab<CR>
+    map <leader>tr :TernRefs<CR>
+    map <leader>tR :TernRename<CR>
+endif
+if (has("python3"))
+    let g:jedi#force_py_version = 3
+endif
+
 colorscheme torte
 
 filetype plugin indent on " enable loading indent file for filetype
+
+
+
+" python-mode configuration
+" let g:pymode=0
+let g:pymode_indent=0
+let g:pymode_motion=0
+let g:pymode_doc=0
+let g:pymode_breakpoint=1
+let g:pymode_lint=0
+let g:pymode_rope=0
+let g:pymode_syntax=0
+
+let g:pymode_virtualenv=1 " Auto fix vim python paths if virtualenv enabled
+" let g:pymode_folding=1  " Enable python folding
+" let g:pymode_utils_whitespaces=0  " Do not autoremove unused whitespaces
+" let g:pymode_lint_ignore = "C0110 Exported"  " ignore pep257 missing docstring warning
+" let g:pymode_lint_minheight = 5   " Minimal height of pylint error window
+" let g:pymode_lint_maxheight = 15  " Maximal height of pylint error window
+" let g:pymode_lint_write = 0  " Disable pylint checking every save
+" let g:pymode_run_key = "<leader>run"  " default key conflicts with jedi-vim
+" let g:pymode_syntax_highlight_self=0  " do not highlight self
+" let g:pymode_rope_vim_completion=0  " use jedi-vim for completion
+" let g:pymode_rope_guess_project=0
+" let g:pymode_doc_key="<leader>k"  " used jedi-vim for help
+let g:pymode_run_bind = '<leader>R'
+
+

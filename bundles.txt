@@ -5,3 +5,5 @@ vim-javascript-syntax
 jedi-vim
 snipmate
 vim-javascript
+
+tern
